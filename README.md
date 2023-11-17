@@ -36,7 +36,7 @@ Este é um exemplo de um aplicativo Java que utiliza Docker para execução dos 
       java Client
    ````
 
-   Resultados pt-br: 
+## Resultados pt-br:
 
    Digite uma palavra (ou 'exit' para sair): aparo
    Conectado ao servidor na porta: 12345
@@ -59,7 +59,7 @@ Este é um exemplo de um aplicativo Java que utiliza Docker para execução dos 
    Idioma recebido: pt-br
    Palavras semelhantes encontradas: [sapato, saro, separo, tapar, tapará, tapara, taparão, taparmo, tapado, tapamo, varo]
 
-   Resultados es:
+## Resultados es:
 
    Digite uma palavra (ou 'exit' para sair): Hono
    Conectado ao servidor na porta: 12345
@@ -86,14 +86,8 @@ Este é um exemplo de um aplicativo Java que utiliza Docker para execução dos 
    Idioma recebido: es
    Palavras semelhantes encontradas: [Soco, Sonso, Songo, Soto, Teno, Togo, Tona, Tondo, Torno, Toro, Uno, Uoro, Vino, Von, Zona]
 
-5. **Linguagens**
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original-wordmark.svg" />
-                  
-6. **Demonstração com Docker**
-
-
-
+## Tecnologias utilizadas
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg" alt="Java" width="40" height="40"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original-wordmark.svg" alt="Docker" width="40" height="40"/>
 
 
 
