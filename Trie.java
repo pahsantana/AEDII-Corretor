@@ -77,47 +77,44 @@ public class Trie {
         return similarWords;
     }
 
-private void searchSimilarWords(Node node, String inputWord, String currentWord, int maxDistance, List<String> similarWords) {
-    if (currentWord.length() > inputWord.length() + maxDistance) {
-        return;
-    }
+    private void searchSimilarWords(Node node, String inputWord, String currentWord, int maxDistance, List<String> similarWords) {
+        if (currentWord.length() > inputWord.length() + maxDistance) {
+            return;
+        }
 
-    if (node.isEndOfWord && calculateLevenshteinDistance(currentWord.toLowerCase(), inputWord.toLowerCase()) <= maxDistance) {
-        char firstLetter = currentWord.charAt(0);
-        if ((firstLetter >= 'a' && firstLetter <= 'i') || (firstLetter >= 'j' && firstLetter <= 'r') || (firstLetter >= 's' && firstLetter <= 'z')) {
+        if (node.isEndOfWord && calculateLevenshteinDistance(currentWord, inputWord) <= maxDistance) {
             similarWords.add(currentWord);
         }
-    }
 
-    for (char c : node.children.keySet()) {
-        searchSimilarWords(node.children.get(c), inputWord, currentWord + c, maxDistance, similarWords);
+        for (char c : node.children.keySet()) {
+            searchSimilarWords(node.children.get(c), inputWord, currentWord + c, maxDistance, similarWords);
+        }
     }
-}
-
 
     private int calculateLevenshteinDistance(String word1, String word2) {
-        int m = word1.length();
-        int n = word2.length();
+        int[][] dp = new int[word1.length() + 1][word2.length() + 1];
 
-        int[][] dp = new int[2][n + 1];
-
-        for (int j = 0; j <= n; j++) {
-            dp[0][j] = j;
-        }
-
-        for (int i = 1; i <= m; i++) {
-            dp[i % 2][0] = i;
-
-            for (int j = 1; j <= n; j++) {
-                int cost = (word1.charAt(i - 1) == word2.charAt(j - 1)) ? 0 : 1;
-                dp[i % 2][j] = Math.min(
-                        Math.min(dp[(i - 1) % 2][j] + 1, dp[i % 2][j - 1] + 1),
-                        dp[(i - 1) % 2][j - 1] + cost
-                );
+        for (int i = 0; i <= word1.length(); i++) {
+            for (int j = 0; j <= word2.length(); j++) {
+                if (i == 0) {
+                    dp[i][j] = j;
+                } else if (j == 0) {
+                    dp[i][j] = i;
+                } else {
+                    dp[i][j] = min(
+                            dp[i - 1][j - 1] + (word1.charAt(i - 1) == word2.charAt(j - 1) ? 0 : 1),
+                            dp[i][j - 1] + 1,
+                            dp[i - 1][j] + 1
+                    );
+                }
             }
         }
 
-        return dp[m % 2][n];
+        return dp[word1.length()][word2.length()];
+    }
+
+    private int min(int a, int b, int c) {
+        return Math.min(Math.min(a, b), c);
     }
 
     private void clear() {
@@ -153,3 +150,4 @@ private void searchSimilarWords(Node node, String inputWord, String currentWord,
         dfs(root);
     }
 }
+
