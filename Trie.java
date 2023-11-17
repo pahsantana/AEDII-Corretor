@@ -27,12 +27,8 @@ public class Trie {
         setCaseSensitive(caseSensitive);
     }
 
-    public void addFromFile(String filePath, char firstLetter) {
-        clear(); // Clear the Trie before adding words for a new first letter
-        loadFile(filePath, firstLetter);
-    }
-
     private void loadFile(String filePath, char firstLetter) {
+        clear(); 
         boolean shouldLoad = false;
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -117,7 +113,7 @@ public class Trie {
         return Math.min(Math.min(a, b), c);
     }
 
-    private void clear() {
+    public void clear() {
         root.children.clear();
         setNumberOfWords(0);
     }
@@ -148,6 +144,10 @@ public class Trie {
     public void show() {
         System.out.println("");
         dfs(root);
+    }
+
+    public int getNumOfWords() {
+        return numOfWords;
     }
 }
 
